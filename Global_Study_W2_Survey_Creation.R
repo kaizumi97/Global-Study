@@ -1,4 +1,5 @@
-setwd(dir = "c://Users/Kaizu/Downloads/")
+# Set work directory of your choosing. Make sure that the all files are in the same folder.
+setwd(dir = "")
 
 
 # Load libraries
@@ -59,7 +60,7 @@ for (col in translation_columns) {
   ppp_row <- which(ppp_data$Countries == base_country)
   if (length(ppp_row) == 0) next
   
-  rows_to_edit <- 13:nrow(translations)  # ✅ Skip rows 1–12
+  rows_to_edit <- 13:nrow(translations)  # Skip rows 1–12
   
   # === First pass: Replace all $X with placeholders to avoid compounding ===
   for (value in rev(dollar_values)) {
@@ -238,7 +239,7 @@ for (country in country_columns) {
   cat("✅ Translated survey saved for", country, "→", output_survey_path, "\n")
 }
 
-# === STEP 5: Write error log if needed ===
+# Write error log if needed
 if (nrow(all_errors) > 0) {
   write_xlsx(all_errors, "translation_errors_summary.xlsx")
   cat("⚠️ Translation issues found — saved to: translation_errors_summary.xlsx\n")
